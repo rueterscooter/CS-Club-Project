@@ -40,3 +40,9 @@ func normal_animation_loop():
 	
 	
 	pass
+
+func damage_loop():
+	
+	
+	
+	pass
