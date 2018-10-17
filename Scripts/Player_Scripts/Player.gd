@@ -24,7 +24,7 @@ func _physics_process(delta):
 
 func normal_controls_loop():
 	
-	
+	#test
 	
 	pass
 
