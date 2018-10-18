@@ -8,7 +8,7 @@ var facing = "front"
 
 #func _ready():
 #
-#
+#	Testing... Don't add this!
 #
 #	pass
 
@@ -36,6 +36,12 @@ func normal_movement_loop():
 	pass
 
 func normal_animation_loop():
+	
+	
+	
+	pass
+
+func damage_loop():
 	
 	
 	

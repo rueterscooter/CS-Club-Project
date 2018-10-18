@@ -11,7 +11,13 @@ config_version=3
 [application]
 
 config/name="CS Club Project"
+run/main_scene="res://Scenes/RoomManager.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=800
+window/size/height=480
 
 [rendering]
 
