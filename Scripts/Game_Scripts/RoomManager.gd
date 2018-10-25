@@ -36,7 +36,6 @@ func room_setup():
 				instance.set_name("wall" + String(wallCtr))
 				self.add_child(instance)
 				instance.position = Vector2(8+ col * 16, 8 +row * 16)
-				print(instance.position)
 	
 	pass
 

@@ -11,13 +11,18 @@ config_version=3
 [application]
 
 config/name="CS Club Project"
-run/main_scene="res://Scenes/RoomManager.tscn"
+run/main_scene="res://Scenes/Player.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=800
 window/size/height=480
+
+[input]
+
+ui_shoot=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
 
 [rendering]
 
