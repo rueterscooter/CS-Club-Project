@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="CS Club Project"
-run/main_scene="res://Scenes/Player.tscn"
+run/main_scene="res://Scenes/GameLoop.tscn"
 config/icon="res://icon.png"
 
 [display]
