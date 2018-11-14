@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Sprites/Enemies/enemy_temp.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemy_Scripts/EnemySpikes.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Enemies/enemy_temp.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -33,10 +34,13 @@ input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
+script = ExtResource( 1 )
+speed = 0
+moveTimer = 0.5
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="SolidCollider" type="CollisionShape2D" parent="KinematicBody2D" index="1"]
 

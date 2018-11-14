@@ -1,22 +1,9 @@
-extends KinematicBody2D
+extends "res://Scripts/Game_Scripts/entity.gd"
 
-const CENTER = Vector2(0, 0)
-const UP = Vector2(0, -1)
-const DOWN = Vector2(0, 1)
-const LEFT = Vector2(-1, 0)
-const RIGHT = Vector2(1, 0)
-
-export var SPEED = 50
 export var shootTimer = 0.5
 export var xtBulletA = false
 export var xtBulletB = false
 
-var sprite
-var anim
-
-var moveDir = Vector2(0, 0)
-var state = "normal"
-var facingDir = Vector2(0, 1)
 var bullet = load("res://Scenes/Bullet.tscn")
 
 var shootHold = false
@@ -24,6 +11,7 @@ var shootCoolDown = 0
 
 func _ready():
 	
+	speed = 50
 	sprite = $Sprite
 	anim = $AnimationPlayer
 	
@@ -46,41 +34,34 @@ func _physics_process(delta):
 
 func normal_controls_loop():
 	
-	var UP = Input.is_action_pressed("ui_up")
-	var DOWN = Input.is_action_pressed("ui_down")
-	var LEFT = Input.is_action_pressed("ui_left")
-	var RIGHT = Input.is_action_pressed("ui_right")
-	var SHOOT = Input.is_action_pressed("ui_shoot")
+	var up = Input.is_action_pressed("ui_up")
+	var down = Input.is_action_pressed("ui_down")
+	var left = Input.is_action_pressed("ui_left")
+	var right = Input.is_action_pressed("ui_right")
+	var shoot = Input.is_action_pressed("ui_shoot")
 	
-	if SHOOT:
+	if shoot:
 		if shootCoolDown <= 0:
 			shoot_bullets()
 	else:
 		shootHold = false
 	
-	check_direction(UP, LEFT, RIGHT, DOWN)
+	check_direction(up, left, right, down)
 	
-	moveDir = Vector2(int(RIGHT) - int(LEFT), int(DOWN) - int(UP))
+	moveDir = Vector2(int(right) - int(left), int(down) - int(up))
 	
 	pass
 
-func check_direction(var UP, var LEFT, var RIGHT, var DOWN):
+func check_direction(var up, var left, var right, var down):
 	
-	if UP && not LEFT && not RIGHT && not DOWN:
+	if up && not left && not right && not down:
 		facingDir = Vector2(0, -1)
-	elif not UP && not LEFT && not RIGHT && DOWN:
+	elif not up && not left && not right && down:
 		facingDir = Vector2(0, 1)
-	elif not UP && not LEFT && RIGHT && not DOWN:
+	elif not up && not left && right && not down:
 		facingDir = Vector2(1, 0)
-	elif not UP && LEFT && not RIGHT && not DOWN:
+	elif not up && left && not right && not down:
 		facingDir = Vector2(-1, 0)
-	
-	pass
-
-func normal_movement_loop():
-	
-	var motion = moveDir.normalized() * SPEED
-	move_and_slide(motion, Vector2(0, 0))
 	
 	pass
 
@@ -100,14 +81,14 @@ func choose_animation(var animNamePar):
 	
 	var dir = ""
 	match facingDir:
-		Vector2(0, 1):
+		DOWN:
 			dir = "front_"
-		Vector2(0, -1):
+		UP:
 			dir = "back_"
-		Vector2(-1, 0):
+		LEFT:
 			dir = "right_"
 			sprite.flip_h = true
-		Vector2(1, 0):
+		RIGHT:
 			dir = "right_"
 			sprite.flip_h = false
 	
