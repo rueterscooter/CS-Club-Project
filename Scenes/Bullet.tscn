@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 2, 2 )
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -46,5 +46,7 @@ audio_bus_name = "Master"
 
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[connection signal="area_entered" from="KinematicBody2D/HitBox" to="KinematicBody2D" method="_on_HitBox_area_entered"]
 
 

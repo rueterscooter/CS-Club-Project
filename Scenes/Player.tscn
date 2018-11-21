@@ -19,7 +19,7 @@ extents = Vector2( 4, 8 )
 custom_solver_bias = 0.0
 extents = Vector2( 5, 8 )
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -39,10 +39,12 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 0
+type = "player"
+speed = 50
+hp = 3
 shootTimer = 0.5
-xtBulletA = true
-xtBulletB = true
+xtBulletA = false
+xtBulletB = false
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
 
@@ -70,8 +72,6 @@ shape = SubResource( 1 )
 
 [node name="Hitbox" type="Area2D" parent="KinematicBody2D" index="3"]
 
-editor/display_folded = true
-visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -114,5 +114,7 @@ editor_draw_drag_margin = false
 
 scale = Vector2( 0.1, 0.1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[connection signal="area_entered" from="KinematicBody2D/Hitbox" to="KinematicBody2D" method="_on_Hitbox_area_entered"]
 
 

@@ -11,7 +11,6 @@ var shootCoolDown = 0
 
 func _ready():
 	
-	speed = 50
 	sprite = $Sprite
 	anim = $AnimationPlayer
 	
@@ -24,9 +23,12 @@ func _physics_process(delta):
 			normal_controls_loop()
 			normal_movement_loop()
 			normal_animation_loop()
+#			hurt_cool_down_loop(delta)
 		"hurt":
-			hurt_loop()
-			hurt_animation_loop()
+			hurt_loop(delta)
+			hurt_movement_loop()
+	
+	hurt_animation_loop()
 
 	shoot_cool_down_loop(delta)
 	
@@ -97,11 +99,14 @@ func choose_animation(var animNamePar):
 	
 	pass
 
-func hurt_loop():
-	
-	
-	
-	pass
+#func hurt_cool_down_loop(delta):
+#
+#	if invincible && hurtCDTimer > 0:
+#		hurtCDTimer -= delta
+#		if hurtCDTimer <= 0:
+#			invincible = false
+#
+#	pass
 
 func hurt_animation_loop():
 	
@@ -174,4 +179,16 @@ func instantiate_bullet(var bulletPos, var direction):
 	instance.global_position = bulletPos
 	instance.get_child(0).motionDir = direction
 	
+	pass
+
+
+func _on_Hitbox_area_entered(area):
+	
+	if area.get_parent().get("type") == "enemy" && !invincible:
+		damaged_by(area.get_parent())
+		# The line below calls the shake function in the GameCam script
+		# this line will ONLY work here. Copying and pasting WILL NOT WORK
+		get_parent().get_parent().get_child(2).get_child(0).shake(0.5, 15, 5)
+#		hurtCDTimer = hurtCDTime
+		
 	pass

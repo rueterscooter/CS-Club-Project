@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Game_Scripts/RoomManager.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/GameCam.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node2D"]
 
@@ -35,6 +36,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
+script = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 

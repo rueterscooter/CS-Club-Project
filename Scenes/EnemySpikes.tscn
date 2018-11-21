@@ -18,7 +18,7 @@ extents = Vector2( 6, 6 )
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
-[node name="Area2D" type="Area2D" index="0"]
+[node name="Area2D" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -35,7 +35,9 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-speed = 0
+type = "enemy"
+speed = 25
+hp = 2
 moveTimer = 0.5
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="0"]
@@ -46,8 +48,9 @@ texture = ExtResource( 2 )
 
 shape = SubResource( 1 )
 
-[node name="HitBox" type="Area2D" parent="." index="1"]
+[node name="HitBox" type="Area2D" parent="KinematicBody2D" index="2"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -56,12 +59,13 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="HurtCollider" type="CollisionShape2D" parent="HitBox" index="0"]
+[node name="HurtCollider" type="CollisionShape2D" parent="KinematicBody2D/HitBox" index="0"]
 
 shape = SubResource( 2 )
 
-[node name="DamageBox" type="Area2D" parent="." index="2"]
+[node name="DamageBox" type="Area2D" parent="KinematicBody2D" index="3"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -70,7 +74,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="DamageCollider" type="CollisionShape2D" parent="DamageBox" index="0"]
+[node name="DamageCollider" type="CollisionShape2D" parent="KinematicBody2D/DamageBox" index="0"]
 
 shape = SubResource( 3 )
 
