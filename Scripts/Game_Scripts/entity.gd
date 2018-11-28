@@ -12,6 +12,7 @@ export var hp = 0
 
 var sprite
 var anim
+var dmgAnim
 
 var state = "normal"
 var invincible = false
@@ -68,9 +69,11 @@ func hurt_loop(delta):
 		hurtTimer -= delta
 		if hurtTimer <= 0:
 			state = "normal"
-#			if type == "enemy":
-#				invincible = false
-			invincible = false
+			if type == "enemy":
+				invincible = false
+			else:
+				dmgAnim.play("blink")
+#			invincible = false
 	
 	pass
 

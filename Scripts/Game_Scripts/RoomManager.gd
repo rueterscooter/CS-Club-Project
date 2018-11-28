@@ -1,20 +1,26 @@
-extends Node2D
+extends "res://Scripts/Game_Scripts/MazeManager.gd"
 
-export var rows = 6
-export var cols = 10
-export var tileSize = 16
+var rows
+var cols
+
+var rowPos = 0
+var colPos = 0
+
+var visited = false
+var walls = [ true, true, true, true ]
 
 var cam
 
-var wall
+var wallTile
 var room
 var roomTiles = []
 
+var tileSize
+
 func _ready():
 	
-	wall = load("res://Scenes/Wall.tscn")
+	wallTile = load("res://Scenes/Wall.tscn")
 	cam = $Cam
-	room_setup()
 	
 	pass
 
@@ -31,7 +37,7 @@ func room_setup():
 			
 			# Draw walls
 			if room[row][col] == 1:
-				toInstantiate = wall
+				toInstantiate = wallTile
 				wallCtr += 1
 			
 			# Instantiate the tile
@@ -55,13 +61,36 @@ func initialize_room():
 	while row < rows:
 		room.append([])
 		while col < cols:
+#			Mark walls
 			if row == 0 || row == rows - 1 || col == 0 || col == cols - 1:
 				room[row].append(1)
+				mark_open_doors(row, col)
+#			Mark empty space
 			else:
 				room[row].append(0)
 			col += 1
 		row += 1
 		col = 0
+	
+	pass
+
+func mark_open_doors(var row, var col):
+	
+	var midX = int(cols / 2)
+	var midY = int(rows / 2)
+	
+	if !walls[wallDir.top]:
+		if row == 0 && (col == midX || (cols % 2 == 0 && col == midX - 1)):
+			room[row][col] = 0
+	if !walls[wallDir.bot]:
+		if row == rows - 1 && (col == midX || (cols % 2 == 0 && col == midX - 1)):
+			room[row][col] = 0
+	if !walls[wallDir.left]:
+		if col == 0 && (row == midY || (rows % 2 == 0 && row == midY - 1)):
+			room[row][col] = 0
+	if !walls[wallDir.right]:
+		if col == cols - 1 && (row == midY || (rows % 2 == 0 && row == midY - 1)):
+			room[row][col] = 0
 	
 	pass
 

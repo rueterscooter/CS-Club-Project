@@ -1,22 +1,19 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Game_Scripts/RoomManager.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/GameCam.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Game_Scripts/GameCam.gd" type="Script" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="RoomManager" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
-rows = 6
-cols = 10
-tileSize = 16
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Cam" type="Camera2D" parent="." index="0"]
 
 position = Vector2( 80, 48 )
 anchor_mode = 1
 rotating = false
-current = true
+current = false
 zoom = Vector2( 0.2, 0.2 )
 limit_left = -10000000
 limit_top = -10000000

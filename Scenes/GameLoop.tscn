@@ -1,24 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Game_Scripts/GameLoop.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/MazeManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/EnemySpikes.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/RoomManager.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
+mazeSize = 5
+roomSizeX = 10
+roomSizeY = 6
 
-[node name="Area2D" parent="." index="0" instance=ExtResource( 2 )]
+[node name="MazeManager" parent="." index="0" instance=ExtResource( 2 )]
 
-position = Vector2( 36, 54 )
-_sections_unfolded = [ "Transform" ]
+[node name="Area2D" parent="." index="1" instance=ExtResource( 3 )]
 
-[node name="Area2D2" parent="." index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 116, 54 )
-
-[node name="Area2D3" parent="." index="2" instance=ExtResource( 4 )]
+position = Vector2( 739, 53 )
 
 

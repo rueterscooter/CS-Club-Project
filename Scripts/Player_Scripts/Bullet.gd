@@ -28,6 +28,6 @@ func _on_HitBox_area_entered(area):
 		area.get_parent().destroy()
 		# The line below calls the shake function in the GameCam script
 		# this line will ONLY work here. Copying and pasting WILL NOT WORK
-		get_parent().get_parent().get_parent().get_child(2).get_child(0).shake(0.5, 8, 2)
+		get_parent().get_parent().get_parent().currentRoom.get_child(0).shake(0.5, 8, 2)
 	
 	pass
